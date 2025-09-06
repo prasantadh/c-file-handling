@@ -23,13 +23,17 @@ to be called as such `./main <filename>` where `main` is the name of the
 executable this repo compiles to and `filename` is can be any file that
 I provide it. How can I check that a `filename` was provided?
 If not, how can I print a nice message to the user and exit?
+2. Install `inotify-tools` on your ubuntu machine. You can now use the loop
+`while true; do inotify-wait -e modify main.c; clear; make; done;`
+to run the make command automatically every `main.c` file changes.
 
 ### Working with the file
 
 1. If I were to tell you that the functions that you need for file handling
 are `fopen`, `fseek`, `fgetc`, `fread` and `fclose`,
 where is the most authentic place to find information about them?
-2. Open the file `data.bin`. What modes would you use?
+2. Open the file `data.bin`. What modes would you use? If you delete the `data.bin`
+file, what error do you get? How can you report the error and exit gracefully?
 3. Close the file. It's best practice (and often a must) to release any resource
 you don't need anymore.
 4. The given file `data.bin` is the following format:
@@ -38,13 +42,13 @@ you don't need anymore.
 +----------------------------------------------+
 | Preamble [40B]                               |
 |----------------------------------------------|
-| Name[2B], id[2B], grade[2B]                  |
+| Name[7B], id[2B], grade[1B]                  |
 |----------------------------------------------|
-| Name[2B], id[2B], grade[2B]                  |
+| Name[7B], id[2B], grade[1B]                  |
 |----------------------------------------------|
-| Name[2B], id[2B], grade[2B]                  |
+| Name[7B], id[2B], grade[1B]                  |
 |----------------------------------------------|
-| Name[2B], id[2B], grade[2B]                  |
+| Name[7B], id[2B], grade[1B]                  |
 +----------------------------------------------+
 </pre>
 
